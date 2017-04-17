@@ -25,6 +25,7 @@ class BookList extends Component {
         book={b}
         key={b.id}
         onReservationClicked={this.onReservationClicked}
+        reservationPossible={!store.reservation}
       />
     );
 
@@ -52,9 +53,9 @@ class BookListItem extends Component {
   }
 
   render() {
-    const { book } = this.props;
+    const { book, reservationPossible } = this.props;
     const className = book.reserved ? 'reserved' : ''
-    const reservationBtn = book.reserved ? '' :
+    const reservationBtn = book.reserved || !reservationPossible ? '' :
       <button onClick={this.onReservationClicked}>reserve</button>;
 
     return (
@@ -68,7 +69,9 @@ class BookListItem extends Component {
 }
 
 BookListItem.propTypes = {
-  book: PropTypes.instanceOf(BookModel).isRequired
+  book: PropTypes.instanceOf(BookModel).isRequired,
+  onReservationClicked: PropTypes.func.isRequired,
+  reservationPossible: PropTypes.bool.isRequired
 }
 
 export default BookList;

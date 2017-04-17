@@ -1,4 +1,4 @@
-import { observable, computed, autorun, action } from 'mobx';
+import { observable, computed, action } from 'mobx';
 
 import ReservationModel from '../models/ReservationModel';
 
@@ -12,8 +12,6 @@ export default class BookStore {
   constructor(books, reservation) {
     this.books = books;
     this.reservation = reservation;
-
-    autorun(() => console.log(this.report));
   }
 
   @computed
@@ -29,6 +27,7 @@ export default class BookStore {
     return this.books.length - this.reservedCount;
   }
 
+  // TODO remove this, show reservation status in separate component
   @computed
   get report() {
     const reservationDesc = this.reservation ?
@@ -42,7 +41,6 @@ export default class BookStore {
 
   @action
   makeReservation(bookId) {
-    console.log(bookId);
     if(this.reservation) {
       return;
     }

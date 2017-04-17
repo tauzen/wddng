@@ -13,6 +13,6 @@ useStrict(true);
 const b1 = new BookModel(1, 'Title', 'Author', false);
 const b2 = new BookModel(2, 'Title2', 'Author2', false);
 
-const store = new BookStore([b1, b2]);
+const store = new BookStore([b1, b2], null);
 
 ReactDOM.render(<App bookStore={store} />, document.getElementById('root'));
