@@ -1,11 +1,13 @@
 import { observable, action } from 'mobx';
 
 export default class BookModel {
+  id;
   author;
   title;
   @observable reserved;
 
-  constructor(author, title, reserved) {
+  constructor(id, author, title, reserved) {
+    this.id = id;
     this.author = author;
     this.title = title;
     this.reserved = reserved;
