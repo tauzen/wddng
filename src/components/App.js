@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import BookStore from '../stores/BookStore';
+import BookList from './BookList';
 import logo from './logo.png';
 import './App.css';
 
@@ -10,12 +14,14 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h3>MK 03/06/2017</h3>
         </div>
-        <p className="App-intro">
-          in progress
-        </p>
+        <BookList store={this.props.bookStore} className="App-intro"/>
       </div>
     );
   }
 }
+
+App.propTypes = {
+  bookStore: PropTypes.instanceOf(BookStore).isRequired
+};
 
 export default App;

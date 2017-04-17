@@ -12,7 +12,7 @@ export default class BookStore {
   @computed
   get reservedCount() {
     return this.books.reduce(
-      (sum, book) => sum + (book.reserved ? 0 : 1),
+      (sum, book) => sum + (book.reserved ? 1 : 0),
       0
     );
   }
@@ -24,7 +24,7 @@ export default class BookStore {
 
   @computed
   get report() {
-    return `Reserved books: ${this.reservedCount} \n` +
+    return `Reserved books: ${this.reservedCount},\n` +
            `Free: ${this.notReservedCount}`;
   }
 }
