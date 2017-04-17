@@ -1,4 +1,4 @@
-import { observable, computed } from 'mobx';
+import { observable, computed, autorun } from 'mobx';
 
 export default class BookStore {
   @observable
@@ -6,6 +6,7 @@ export default class BookStore {
 
   constructor(books) {
     this.books = books;
+    autorun(() => console.log(this.report));
   }
 
   @computed
@@ -19,5 +20,11 @@ export default class BookStore {
   @computed
   get notReservedCount() {
     return this.books.length - this.reservedCount;
+  }
+
+  @computed
+  get report() {
+    return `Reserved books: ${this.reservedCount} \n` +
+           `Free: ${this.notReservedCount}`;
   }
 }
