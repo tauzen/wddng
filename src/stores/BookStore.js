@@ -20,19 +20,6 @@ export default class BookStore {
     return this.books.length - this.reservedCount;
   }
 
-  // TODO remove this, show reservation status in separate component
-  @computed get report() {
-    const reservationDesc = this.reservation
-      ? `${this.reservation.book.author}, ${this.reservation.book.title}`
-      : 'None';
-
-    return (
-      `Reserved books: ${this.reservedCount},\n` +
-      `Free: ${this.notReservedCount},\n` +
-      `Reservation: ${reservationDesc}`
-    );
-  }
-
   @action.bound makeReservation(bookId) {
     if (this.reservation) {
       return;

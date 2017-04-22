@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 
-import BookStore from '../stores/BookStore';
 import BookListItem from './BookListItem';
+import Reservation from './Reservation';
+import BookStore from '../stores/BookStore';
 
 @observer class BookList extends Component {
   render() {
     const { store } = this.props;
-    const cancelBtn = !store.reservation
-      ? ''
-      : <button onClick={store.cancelReservation}>Cancel Reservation</button>;
     const books = store.books.map(b => (
       <BookListItem
         book={b}
@@ -22,8 +20,12 @@ import BookListItem from './BookListItem';
 
     return (
       <div>
-        <p>{store.report}</p>
-        {cancelBtn}
+        <Reservation
+          reservedCount={store.reservedCount}
+          notReservedCount={store.notReservedCount}
+          reservation={store.reservation}
+          onCancelClicked={store.cancelReservation}
+        />
         <ul>
           {books}
         </ul>
