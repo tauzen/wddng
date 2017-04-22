@@ -8,23 +8,15 @@ import BookModel from '../models/BookModel';
 
 @observer
 class BookList extends Component {
-  onReservationClicked = (id) => {
-    this.props.store.makeReservation(id);
-  }
-
-  onCancelClicked = () => {
-    this.props.store.cancelReservation();
-  }
-
   render() {
     const { store } = this.props;
     const cancelBtn = !store.reservation ? '' :
-      <button onClick={this.onCancelClicked}>Cancel Reservation</button>
+      <button onClick={store.cancelReservation}>Cancel Reservation</button>
     const books = store.books.map((b) =>
       <BookListItem
         book={b}
         key={b.id}
-        onReservationClicked={this.onReservationClicked}
+        onReservationClicked={() => store.makeReservation(b.id)}
         reservationPossible={!store.reservation}
       />
     );
@@ -47,16 +39,11 @@ BookList.propTypes = {
 
 @observer
 class BookListItem extends Component {
-  onReservationClicked = () => {
-    const { book, onReservationClicked } = this.props;
-    onReservationClicked(book.id);
-  }
-
   render() {
-    const { book, reservationPossible } = this.props;
+    const { book, reservationPossible, onReservationClicked } = this.props;
     const className = book.reserved ? 'reserved' : ''
     const reservationBtn = book.reserved || !reservationPossible ? '' :
-      <button onClick={this.onReservationClicked}>reserve</button>;
+      <button onClick={onReservationClicked}>reserve</button>;
 
     return (
       <li className={className}>

@@ -39,7 +39,7 @@ export default class BookStore {
            `Reservation: ${reservationDesc}`;
   }
 
-  @action
+  @action.bound
   makeReservation(bookId) {
     if(this.reservation) {
       return;
@@ -52,7 +52,7 @@ export default class BookStore {
     }
   }
 
-  @action
+  @action.bound
   cancelReservation() {
     if(!this.reservation) {
       return;
