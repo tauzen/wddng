@@ -14,14 +14,14 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h3>MK 03/06/2017</h3>
         </div>
-        <BookList store={this.props.bookStore} className="App-intro"/>
+        <BookList store={this.props.bookStore} className="App-intro" />
       </div>
     );
   }
 }
 
 App.propTypes = {
-  bookStore: PropTypes.instanceOf(BookStore).isRequired
+  bookStore: PropTypes.instanceOf(BookStore).isRequired,
 };
 
 export default App;

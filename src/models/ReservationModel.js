@@ -1,4 +1,3 @@
-
 export default class ReservationModel {
   ownerId;
   book;

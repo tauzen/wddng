@@ -13,16 +13,14 @@ export default class BookModel {
     this.reserved = reserved;
   }
 
-  @action.bound
-  reserve() {
-    if(!this.reserved) {
+  @action.bound reserve() {
+    if (!this.reserved) {
       this.reserved = true;
     }
   }
 
-  @action.bound
-  cancelReservation() {
-    if(this.reserved) {
+  @action.bound cancelReservation() {
+    if (this.reserved) {
       this.reserved = false;
     }
   }
