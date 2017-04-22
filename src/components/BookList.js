@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 
 import BookStore from '../stores/BookStore';
-import BookModel from '../models/BookModel';
+import BookListItem from './BookListItem';
 
 @observer class BookList extends Component {
   render() {
@@ -34,30 +34,6 @@ import BookModel from '../models/BookModel';
 
 BookList.propTypes = {
   store: PropTypes.instanceOf(BookStore).isRequired,
-};
-
-@observer class BookListItem extends Component {
-  render() {
-    const { book, reservationPossible, onReservationClicked } = this.props;
-    const className = book.reserved ? 'reserved' : '';
-    const reservationBtn = book.reserved || !reservationPossible
-      ? ''
-      : <button onClick={onReservationClicked}>reserve</button>;
-
-    return (
-      <li className={className}>
-        <p>{book.title}</p>
-        <p>{book.author}</p>
-        {reservationBtn}
-      </li>
-    );
-  }
-}
-
-BookListItem.propTypes = {
-  book: PropTypes.instanceOf(BookModel).isRequired,
-  onReservationClicked: PropTypes.func.isRequired,
-  reservationPossible: PropTypes.bool.isRequired,
 };
 
 export default BookList;
