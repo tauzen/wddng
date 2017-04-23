@@ -5,6 +5,7 @@ import BookModel from '../models/BookModel';
 
 export default class BookStore {
   FIREBASE_REF = '/books/';
+  RESERVATION_ID_KEY = 'reservationId';
 
   database;
   @observable books = [];
@@ -12,7 +13,7 @@ export default class BookStore {
 
   constructor(database) {
     this.database = database;
-    this.reservationId = localStorage.getItem('reservationId');
+    this.reservationId = localStorage.getItem(this.RESERVATION_ID_KEY);
 
     this.database.ref(this.FIREBASE_REF).on('value', snapshot => {
       const booksData = snapshot.val();
@@ -54,9 +55,9 @@ export default class BookStore {
 
   @action updateReservationId(reservationId) {
     if (reservationId) {
-      localStorage.setItem('reservationId', reservationId);
+      localStorage.setItem(this.RESERVATION_ID_KEY, reservationId);
     } else {
-      localStorage.removeItem('reservationId');
+      localStorage.removeItem(this.RESERVATION_ID_KEY);
     }
 
     this.reservationId = reservationId;
