@@ -7,7 +7,6 @@ import App from './components/App';
 import './index.css';
 
 import BookStore from './stores/BookStore';
-import BookModel from './models/BookModel';
 
 useStrict(true);
 
@@ -19,9 +18,6 @@ firebase.initializeApp({
   storageBucket: 'wddng-books.appspot.com',
   messagingSenderId: '495488837968',
 });
-
-const b1 = new BookModel(1, 'George Orwell', 'Folwark zwierzęcy', false);
-const b2 = new BookModel(2, 'Michaił Bułhakow', 'Mistrz i Małgorzata', false);
 
 const store = new BookStore(firebase.database());
 

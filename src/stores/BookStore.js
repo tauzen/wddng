@@ -1,4 +1,5 @@
 import { observable, computed, action } from 'mobx';
+import uuid from 'uuid';
 
 import BookModel from '../models/BookModel';
 import ReservationModel from '../models/ReservationModel';
@@ -8,10 +9,11 @@ export default class BookStore {
 
   database;
   @observable books = [];
-  @observable reservation = null;
+  @observable reservationId = null;
 
   constructor(database) {
     this.database = database;
+    this.reservationId = localStorage.getItem('reservationId');
 
     this.database.ref(this.FIREBASE_REF).on('value', snapshot => {
       const booksData = snapshot.val();
@@ -27,6 +29,22 @@ export default class BookStore {
     return this.books.length - this.reservedCount;
   }
 
+  @computed get reservation() {
+    if (!this.reservationId) {
+      return null;
+    }
+
+    const reservedBook = this.books.find(
+      b => b.reservationId === this.reservationId,
+    );
+
+    if (!reservedBook) {
+      return null;
+    }
+
+    return new ReservationModel(this.reservationId, reservedBook);
+  }
+
   @action updateBooks(booksData) {
     this.books = Object.keys(booksData).map(
       id =>
@@ -34,9 +52,19 @@ export default class BookStore {
           id,
           booksData[id].author,
           booksData[id].title,
-          !!booksData[id].reservationId,
+          booksData[id].reservationId,
         ),
     );
+  }
+
+  @action updateReservationId(reservationId) {
+    if (reservationId) {
+      localStorage.setItem('reservationId', reservationId);
+    } else {
+      localStorage.removeItem('reservationId');
+    }
+
+    this.reservationId = reservationId;
   }
 
   @action.bound makeReservation(bookId) {
@@ -46,8 +74,11 @@ export default class BookStore {
 
     const book = this.books.find(b => b.id === bookId);
     if (book && !book.reserved) {
-      this.reservation = new ReservationModel('ownerId', book);
-      book.reserve();
+      const reservationId = uuid.v4();
+      this.database
+        .ref(`${this.FIREBASE_REF}${book.id}`)
+        .update({ reservationId })
+        .then(() => this.updateReservationId(reservationId));
     }
   }
 
@@ -56,7 +87,9 @@ export default class BookStore {
       return;
     }
 
-    this.reservation.book.cancelReservation();
-    this.reservation = null;
+    this.database
+      .ref(`${this.FIREBASE_REF}${this.reservation.book.id}`)
+      .update({ reservationId: null })
+      .then(() => this.updateReservationId(null));
   }
 }

@@ -1,27 +1,19 @@
-import { observable, action } from 'mobx';
+import { observable, computed } from 'mobx';
 
 export default class BookModel {
   id;
   author;
   title;
-  @observable reserved;
+  @observable reservationId;
 
-  constructor(id, author, title, reserved) {
+  constructor(id, author, title, reservationId) {
     this.id = id;
     this.author = author;
     this.title = title;
-    this.reserved = reserved;
+    this.reservationId = reservationId;
   }
 
-  @action.bound reserve() {
-    if (!this.reserved) {
-      this.reserved = true;
-    }
-  }
-
-  @action.bound cancelReservation() {
-    if (this.reserved) {
-      this.reserved = false;
-    }
+  @computed get reserved() {
+    return !!this.reservationId;
   }
 }
