@@ -2,7 +2,6 @@ import { observable, computed, action } from 'mobx';
 import uuid from 'uuid';
 
 import BookModel from '../models/BookModel';
-import ReservationModel from '../models/ReservationModel';
 
 export default class BookStore {
   FIREBASE_REF = '/books/';
@@ -38,11 +37,7 @@ export default class BookStore {
       b => b.reservationId === this.reservationId,
     );
 
-    if (!reservedBook) {
-      return null;
-    }
-
-    return new ReservationModel(this.reservationId, reservedBook);
+    return reservedBook ? reservedBook : null;
   }
 
   @action updateBooks(booksData) {
@@ -75,9 +70,10 @@ export default class BookStore {
     const book = this.books.find(b => b.id === bookId);
     if (book && !book.reserved) {
       const reservationId = uuid.v4();
+      const reservationDate = new Date().toJSON();
       this.database
         .ref(`${this.FIREBASE_REF}${book.id}`)
-        .update({ reservationId })
+        .update({ reservationId, reservationDate })
         .then(() => this.updateReservationId(reservationId));
     }
   }
@@ -88,8 +84,8 @@ export default class BookStore {
     }
 
     this.database
-      .ref(`${this.FIREBASE_REF}${this.reservation.book.id}`)
-      .update({ reservationId: null })
+      .ref(`${this.FIREBASE_REF}${this.reservation.id}`)
+      .update({ reservationId: null, reservationDate: null })
       .then(() => this.updateReservationId(null));
   }
 }

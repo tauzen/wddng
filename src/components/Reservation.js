@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 
-import ReservationModel from '../models/ReservationModel';
+import BookModel from '../models/BookModel';
 
 @observer class Reservation extends Component {
   render() {
@@ -19,8 +19,8 @@ import ReservationModel from '../models/ReservationModel';
         <p>Free: {notReservedCount}</p>
         {reservation &&
           <div>
-            <p>{reservation.book.author}</p>
-            <p>{reservation.book.title}</p>
+            <p>{reservation.author}</p>
+            <p>{reservation.title}</p>
             <button onClick={onCancelClicked}>Cancel Reservation</button>
           </div>}
       </div>
@@ -31,7 +31,7 @@ import ReservationModel from '../models/ReservationModel';
 Reservation.propTypes = {
   notReservedCount: PropTypes.number.isRequired,
   onCancelClicked: PropTypes.func,
-  reservation: PropTypes.instanceOf(ReservationModel),
+  reservation: PropTypes.instanceOf(BookModel),
   reservedCount: PropTypes.number.isRequired,
 };
 
