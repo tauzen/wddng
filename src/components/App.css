@@ -6,3 +6,7 @@
   height: 80px;
   padding: 20px;
 }
+
+.reserved {
+  text-decoration: line-through;
+}

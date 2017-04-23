@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "firebase": "^3.8.0",
     "mobx": "^3.1.9",
     "mobx-react": "^4.1.8",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "uuid": "^3.0.1"
   },
   "homepage": "https://tauzen.github.io/",
   "devDependencies": {

@@ -1,18 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useStrict } from 'mobx';
+import * as firebase from 'firebase';
 
 import App from './components/App';
 import './index.css';
 
 import BookStore from './stores/BookStore';
-import BookModel from './models/BookModel';
 
 useStrict(true);
 
-const b1 = new BookModel(1, 'Title', 'Author', false);
-const b2 = new BookModel(2, 'Title2', 'Author2', false);
+firebase.initializeApp({
+  apiKey: 'AIzaSyBYTCUKzXhl48rDVZIB66RFNmBDvB2gB6E',
+  authDomain: 'wddng-books.firebaseapp.com',
+  databaseURL: 'https://wddng-books.firebaseio.com',
+  projectId: 'wddng-books',
+  storageBucket: 'wddng-books.appspot.com',
+  messagingSenderId: '495488837968',
+});
 
-const store = new BookStore([b1, b2], null);
+const store = new BookStore(firebase.database());
 
 ReactDOM.render(<App bookStore={store} />, document.getElementById('root'));
