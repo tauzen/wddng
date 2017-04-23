@@ -1,15 +1,22 @@
 import { observable, computed, action } from 'mobx';
 
+import BookModel from '../models/BookModel';
 import ReservationModel from '../models/ReservationModel';
 
 export default class BookStore {
-  @observable books = [];
+  FIREBASE_REF = '/books/';
 
+  database;
+  @observable books = [];
   @observable reservation = null;
 
-  constructor(books, reservation) {
-    this.books = books;
-    this.reservation = reservation;
+  constructor(database) {
+    this.database = database;
+
+    this.database.ref(this.FIREBASE_REF).on('value', snapshot => {
+      const booksData = snapshot.val();
+      this.updateBooks(booksData);
+    });
   }
 
   @computed get reservedCount() {
@@ -18,6 +25,18 @@ export default class BookStore {
 
   @computed get notReservedCount() {
     return this.books.length - this.reservedCount;
+  }
+
+  @action updateBooks(booksData) {
+    this.books = Object.keys(booksData).map(
+      id =>
+        new BookModel(
+          id,
+          booksData[id].author,
+          booksData[id].title,
+          !!booksData[id].reservationId,
+        ),
+    );
   }
 
   @action.bound makeReservation(bookId) {
