@@ -53,7 +53,7 @@ export default class BookStore {
     );
   }
 
-  @action updateReservationId(reservationId) {
+  @action.bound updateReservationId(reservationId) {
     if (reservationId) {
       localStorage.setItem(this.RESERVATION_ID_KEY, reservationId);
     } else {
@@ -75,7 +75,7 @@ export default class BookStore {
       this.database
         .ref(`${this.FIREBASE_REF}${book.id}`)
         .update({ reservationId, reservationDate })
-        .then(() => this.updateReservationId(reservationId));
+        .then(this.updateReservationId(reservationId));
     }
   }
 
@@ -87,6 +87,6 @@ export default class BookStore {
     this.database
       .ref(`${this.FIREBASE_REF}${this.reservation.id}`)
       .update({ reservationId: null, reservationDate: null })
-      .then(() => this.updateReservationId(null));
+      .then(this.updateReservationId(null));
   }
 }
