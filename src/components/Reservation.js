@@ -12,17 +12,23 @@ import BookModel from '../models/BookModel';
       reservation,
       onCancelClicked,
     } = this.props;
+    const stats = `${reservedCount}/${reservedCount + notReservedCount}`;
 
     return (
-      <div>
-        <p>Reserved: {reservedCount}</p>
-        <p>Free: {notReservedCount}</p>
+      <div className="Reservation">
+        {!reservation &&
+          <p className="status">
+            kilknij na tytuł aby zarezerwować, zarezerwowano {stats}
+          </p>}
         {reservation &&
-          <div>
-            <p>{reservation.author}</p>
-            <p>{reservation.title}</p>
-            <button onClick={onCancelClicked}>Cancel Reservation</button>
-          </div>}
+          <p>
+            <span>Twoja rezerwacja to: </span>
+            <span className="title">
+              "{reservation.title}", {reservation.author}
+            </span>
+            &nbsp;
+            <button onClick={onCancelClicked}>jednak wolę coś innego</button>
+          </p>}
       </div>
     );
   }

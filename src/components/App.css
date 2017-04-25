@@ -1,12 +1,13 @@
-.App {
+.App-header {
   text-align: center;
 }
 
-.App-logo {
-  height: 80px;
-  padding: 20px;
+.App-header h3 {
+  margin: 0 0 1rem 0;
+  color: #EA90A3;
 }
 
-.reserved {
-  text-decoration: line-through;
+.App-logo {
+  height: 5rem;
+  padding: 1rem 1rem 0 1rem;
 }

@@ -1,0 +1,24 @@
+.BookList {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.BookList ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.BookList li {
+  width: 200px;
+  border-left: 1px solid #8A8B8A;
+  text-align: left;
+  padding: 10px;
+}
+
+.BookList li.reserved {
+  text-decoration: line-through;
+}

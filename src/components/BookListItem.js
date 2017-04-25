@@ -10,11 +10,11 @@ import BookModel from '../models/BookModel';
     const className = book.reserved ? 'reserved' : '';
     const reservationBtn = book.reserved || !reservationPossible
       ? ''
-      : <button onClick={onReservationClicked}>reserve</button>;
+      : <button onClick={onReservationClicked}>biorę to!</button>;
 
     return (
       <li className={className}>
-        <p>{book.title}</p>
+        <p>"{book.title}"</p>
         <p>{book.author}</p>
         {reservationBtn}
       </li>

@@ -6,6 +6,8 @@ import BookListItem from './BookListItem';
 import Reservation from './Reservation';
 import BookStore from '../stores/BookStore';
 
+import './BookList.css';
+
 @observer class BookList extends Component {
   render() {
     const { store } = this.props;
@@ -19,7 +21,7 @@ import BookStore from '../stores/BookStore';
     ));
 
     return (
-      <div>
+      <div className="BookList">
         <Reservation
           reservedCount={store.reservedCount}
           notReservedCount={store.notReservedCount}
