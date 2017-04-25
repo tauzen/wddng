@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import BookStore from '../stores/BookStore';
 import BookList from './BookList';
-import logo from './logo.png';
+import logo from '../img/logo.svg';
 import './App.css';
 
 class App extends Component {
