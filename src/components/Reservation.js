@@ -12,14 +12,10 @@ import BookModel from '../models/BookModel';
       reservation,
       onCancelClicked,
     } = this.props;
-    const stats = `${reservedCount}/${reservedCount + notReservedCount}`;
+    const stats = `${notReservedCount}/${reservedCount + notReservedCount}`;
 
     return (
       <div className="Reservation">
-        {!reservation &&
-          <p className="status">
-            kilknij na tytuł aby zarezerwować, zarezerwowano {stats}
-          </p>}
         {reservation &&
           <p>
             <span>Twoja rezerwacja to: </span>
@@ -29,6 +25,9 @@ import BookModel from '../models/BookModel';
             &nbsp;
             <button onClick={onCancelClicked}>jednak wolę coś innego</button>
           </p>}
+          <p className="status">
+            Wolne książki {stats}
+          </p>
       </div>
     );
   }
