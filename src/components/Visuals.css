@@ -15,8 +15,8 @@
 
 .PlaneSpacer {
   background-image: url('../img/spacer.svg');
-  background-repeat-y: no-repeat;
-  background-position-y: center;
+  background-repeat: repeat-x;
+  background-position: center;
   background-size: 1rem;
   height: 23px;
   padding: 0.5rem 0;

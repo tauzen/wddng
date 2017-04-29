@@ -14,9 +14,11 @@ import BookModel from '../models/BookModel';
 
     return (
       <li className={className}>
-        <p>"{book.title}"</p>
-        <p>{book.author}</p>
-        {reservationBtn}
+        <p>
+          <span className="title">"{book.title}"</span>,&nbsp;
+          <span className="author">{book.author}</span>
+        </p>
+        <div>{reservationBtn}</div>
       </li>
     );
   }
