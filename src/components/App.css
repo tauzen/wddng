@@ -9,21 +9,6 @@
   color: #EA90A3;
 }
 
-.App-logo {
-  width: 10.5rem;
-  margin-top: 1rem;
-}
-
-.App-intro {
-  text-align: left;
-  font-size: 0.9rem;
-  line-height: 1.5rem;
-}
-
-.sign {
-  text-align: right;
-}
-
 .planeSpacer {
   background-image: url('../img/spacer.svg');
   background-repeat-y: no-repeat;
