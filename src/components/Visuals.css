@@ -1,0 +1,39 @@
+.Intro-logo {
+  width: 10.5rem;
+  margin-top: 1rem;
+}
+
+.Intro-message {
+  text-align: left;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+}
+
+.Intro-signature {
+  text-align: right;
+}
+
+.PlaneSpacer {
+  background-image: url('../img/spacer.svg');
+  background-repeat-y: no-repeat;
+  background-position-y: center;
+  background-size: 1rem;
+  height: 23px;
+  padding: 0.5rem 0;
+}
+
+.PlaneSpacer-left {
+  text-align: left;
+}
+
+.PlaneSpacer-right {
+  text-align: right;
+}
+
+.PlaneSpacer-left img {
+  transform: rotate(270deg);
+}
+
+.PlaneSpacer-right img {
+  transform: rotate(90deg);
+}

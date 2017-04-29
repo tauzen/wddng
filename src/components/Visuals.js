@@ -1,9 +1,10 @@
 import React from 'react';
 
 import logo from '../img/logo.svg';
-import './Intro.css';
+import plane from '../img/plane.svg';
+import './Visuals.css';
 
-const Intro = () => (
+export const Intro = () => (
   <div>
     <div>
       <div>
@@ -25,4 +26,13 @@ const Intro = () => (
   </div>
 );
 
-export default Intro;
+export const PlaneSpacer = ({ direction }) => {
+  const className = direction === 'right'
+    ? 'PlaneSpacer PlaneSpacer-right'
+    : 'PlaneSpacer PlaneSpacer-left';
+  return (
+    <div className={className}>
+      <img src={plane} alt="plane" />
+    </div>
+  );
+};

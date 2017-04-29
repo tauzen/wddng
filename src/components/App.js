@@ -5,9 +5,8 @@ import { observer } from 'mobx-react';
 import BookStore from '../stores/BookStore';
 import BookList from './BookList';
 import Reservation from './Reservation';
-import Intro from './Intro';
+import { Intro, PlaneSpacer } from './Visuals';
 
-import plane from '../img/plane.svg';
 import './App.css';
 
 @observer class App extends Component {
@@ -18,15 +17,12 @@ import './App.css';
       <div className="App">
         <div className="App-header">
           <Intro />
-          <div className="planeSpacer"><img src={plane} alt="plane" /></div>
+          <PlaneSpacer />
           <Reservation
             reservation={store.reservation}
             onCancelClicked={store.cancelReservation}
           />
-          {store.reservation &&
-            <div className="planeSpacer">
-              <img src={plane} alt="plane" />
-            </div>}
+          {store.reservation && <PlaneSpacer direction="right" />}
         </div>
         <BookList store={store} />
       </div>
