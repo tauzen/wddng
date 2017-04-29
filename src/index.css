@@ -1,6 +1,11 @@
 body {
-  margin: 0 auto;
   padding: 5px;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
+  color: #4D4D4C;
+}
+
+body > div {
+  max-width: 1000px;
+  margin: 0 auto;
 }
