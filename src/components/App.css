@@ -36,3 +36,16 @@
 .planeSpacer img {
   transform: rotate(270deg);
 }
+
+button {
+  border: 1px solid #EA90A3;
+  background: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #EA90A3;
+}
+
+button:hover {
+  background:  #EA90A3;
+  color: white;
+}
