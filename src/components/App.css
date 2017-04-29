@@ -1,40 +1,12 @@
 .App-header {
   text-align: center;
+  max-width: 440px;
+  margin: 0 auto;
 }
 
 .App-header h2 {
   margin: 0 0 1rem 0;
   color: #EA90A3;
-}
-
-.App-logo {
-  width: 10.5rem;
-  margin-top: 1rem;
-}
-
-.App-intro {
-  max-width: 440px;
-  text-align: left;
-
-  font-size: 0.9rem;
-  line-height: 1.5rem;
-  margin: 0 auto;
-}
-
-.sign {
-  text-align: right;
-}
-
-.planeSpacer {
-  background-image: url('../img/spacer.svg');
-  background-repeat-y: no-repeat;
-  background-position-y: center;
-  background-size: 1rem;
-  height: 23px;
-}
-
-.planeSpacer img {
-  transform: rotate(270deg);
 }
 
 button {
