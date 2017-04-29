@@ -23,8 +23,6 @@ import './BookList.css';
     return (
       <div className="BookList">
         <Reservation
-          reservedCount={store.reservedCount}
-          notReservedCount={store.notReservedCount}
           reservation={store.reservation}
           onCancelClicked={store.cancelReservation}
         />

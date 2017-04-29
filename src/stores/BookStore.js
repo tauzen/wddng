@@ -21,14 +21,6 @@ export default class BookStore {
     });
   }
 
-  @computed get reservedCount() {
-    return this.books.reduce((sum, book) => sum + (book.reserved ? 1 : 0), 0);
-  }
-
-  @computed get notReservedCount() {
-    return this.books.length - this.reservedCount;
-  }
-
   @computed get reservation() {
     if (!this.reservationId) {
       return null;
