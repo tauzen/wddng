@@ -11,15 +11,13 @@ import BookModel from '../models/BookModel';
     return (
       <div>
         {reservation &&
-          <div>
-            <span>Twoja rezerwacja to: </span>
-            <span className="title">
-              "{reservation.title}", {reservation.author}
-            </span>
-            &nbsp;
+          <div className="Reservation">
+            <span>Twoja rezerwacja:</span>
             <p>
-              <button onClick={onCancelClicked}>jednak wolę coś innego</button>
+              <span className="title">"{reservation.title}"</span>,&nbsp;
+              <span className="author">{reservation.author}</span>
             </p>
+            <button onClick={onCancelClicked}>jednak wolę coś innego</button>
           </div>}
       </div>
     );

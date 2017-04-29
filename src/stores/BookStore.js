@@ -48,6 +48,7 @@ export default class BookStore {
   @action.bound updateReservationId(reservationId) {
     if (reservationId) {
       localStorage.setItem(this.RESERVATION_ID_KEY, reservationId);
+      window.scrollTo(0, 0);
     } else {
       localStorage.removeItem(this.RESERVATION_ID_KEY);
     }

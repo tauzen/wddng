@@ -9,6 +9,18 @@
   color: #EA90A3;
 }
 
+.Reservation > span {
+  font-size: 0.9rem;
+}
+
+.Reservation p {
+  margin: 0.5rem 0;
+}
+
+.Reservation .title {
+  font-weight: bold;
+}
+
 button {
   border: 1px solid #EA90A3;
   background: white;
