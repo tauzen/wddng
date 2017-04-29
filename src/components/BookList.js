@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 
 import BookListItem from './BookListItem';
-import Reservation from './Reservation';
 import BookStore from '../stores/BookStore';
 
 import './BookList.css';
@@ -22,10 +21,6 @@ import './BookList.css';
 
     return (
       <div className="BookList">
-        <Reservation
-          reservation={store.reservation}
-          onCancelClicked={store.cancelReservation}
-        />
         <ul>
           {books}
         </ul>
