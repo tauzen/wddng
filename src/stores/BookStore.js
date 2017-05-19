@@ -45,7 +45,7 @@ export default class BookStore {
     );
   }
 
-  @action.bound updateReservationId(reservationId) {
+  @action updateReservationId(reservationId) {
     if (reservationId) {
       localStorage.setItem(this.RESERVATION_ID_KEY, reservationId);
       window.scrollTo(0, 0);
@@ -56,7 +56,7 @@ export default class BookStore {
     this.reservationId = reservationId;
   }
 
-  @action.bound makeReservation(bookId) {
+  @action makeReservation(bookId) {
     if (this.reservation) {
       return;
     }
