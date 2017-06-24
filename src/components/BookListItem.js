@@ -5,12 +5,17 @@ import { observer } from 'mobx-react';
 import BookModel from '../models/BookModel';
 
 @observer class BookListItem extends Component {
+  handleReservationClicked = () => {
+    const { book, onReservationClicked } = this.props;
+    onReservationClicked(book.id);
+  };
+
   render() {
-    const { book, reservationPossible, onReservationClicked } = this.props;
+    const { book, reservationPossible } = this.props;
     const className = book.reserved ? 'reserved' : '';
     const reservationBtn = book.reserved || !reservationPossible
       ? ''
-      : <button onClick={onReservationClicked}>biorę to!</button>;
+      : <button onClick={this.handleReservationClicked}>biorę to!</button>;
 
     return (
       <li className={className}>

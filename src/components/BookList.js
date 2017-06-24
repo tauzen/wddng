@@ -14,7 +14,7 @@ import './BookList.css';
       <BookListItem
         book={b}
         key={b.id}
-        onReservationClicked={() => store.makeReservation(b.id)}
+        onReservationClicked={store.makeReservation}
         reservationPossible={!store.reservation}
       />
     ));
